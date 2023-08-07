@@ -1,0 +1,253 @@
+// -----------------------------------------------
+// Global Styling ////////////////////////////////
+// -----------------------------------------------
+// -----------------------------------------------
+// Imports ///////////////////////////////////////
+// -----------------------------------------------
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
+// -----------------------------------------------
+// Colours ///////////////////////////////////////
+// -----------------------------------------------
+
+$Purple0: #230c33;
+
+$Jet: #161616;
+$Charcoal: lighten($Jet, 15%);
+$Red: #edafb8;
+$Green: #29e7cd;
+$Blue: #749EE3;
+$Yellow: #ffdb58;
+$Purple: #632290;
+$DarkRed: darken($Red, 20%);
+$DarkYellow: darken($Yellow, 10%);
+$DarkGreen: darken($Green, 10%);
+$DarkBlue: darken($Blue, 10%);
+
+$MenuColor: $Red;
+$PrimaryColor: $Purple0;
+$PrimaryColors: (
+  0: $Jet,
+  1: $PrimaryColor,
+  2: lighten($PrimaryColor, 10%),
+  3: lighten($PrimaryColor, 20%),
+  4: lighten($PrimaryColor, 30%),
+  5: lighten($PrimaryColor, 40%),
+  6: lighten($PrimaryColor, 50%),
+  7: lighten($PrimaryColor, 57%),
+  8: lighten($PrimaryColor, 64%),
+  9: lighten($PrimaryColor, 71%),
+  10: lighten($PrimaryColor, 78%),
+  11: lighten($PrimaryColor, 84%),
+  12: White,
+);
+
+$RootBackground: Red;
+$UnderlayColor: White;
+$MainBackground: WhiteSmoke;
+$CardBackground: White;
+
+@function GetColor($level) {
+  @return map-get($PrimaryColors, $level);
+}
+
+// -----------------------------------------------
+// Default Styling ///////////////////////////////
+// -----------------------------------------------
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.Negative { color: $DarkRed; }
+.Positive { color: $DarkGreen; }
+.Neutral { color: $DarkBlue; }
+.Muted { color: GetColor(7); }
+
+// -----------------------------------------------
+// Page Styling //////////////////////////////////
+// -----------------------------------------------
+
+h1 {
+  color: GetColor(4);
+  margin-bottom: 1rem;
+  font-size: 150%;
+}
+
+h2 {
+  color: GetColor(2);
+  margin-bottom: 1rem;
+  font-size: 120%;
+}
+
+h3 {
+  color: GetColor(4);
+  margin-bottom: 0.5rem;
+  font-size: 90%;
+}
+
+section {
+  color: $Jet;
+}
+
+// -----------------------------------------------
+// Form Styling //////////////////////////////////
+// -----------------------------------------------
+
+.fav {
+  font-weight: bold;
+  color: #03AC13;
+}
+
+p.inconspicuous {
+  margin: 2rem 0;
+  color: MistyRose;
+}
+
+form {
+  h3.formTitle {
+    color: GetColor(3);
+    margin-top: 1rem;
+  }
+  div.formInstructions {
+    color: $Jet;
+    margin: 2rem 0;
+    p {
+      span.advice { color: $DarkGreen; font-weight: 500; }
+      span.action { 
+        font-size: 80%; 
+        font-weight: 600; 
+        color: White; 
+        padding: 3px; 
+        border-radius: 3px; 
+        background: $DarkGreen; 
+        &::before, &::after { content: "\00a0\00a0\00a0"; }
+      }
+    }
+  }
+  div.formEntry select,
+  div.formEntry input,
+  div.formAction button {
+    width: 100%;
+    padding: 3px;
+    margin: 1px 0;
+    border-radius: 2px;
+    border: 1px solid GetColor(4);
+    background: White;
+  }
+  div.formEntry {
+    label {
+      color: GetColor(4);
+      font-weight: 600;
+    }
+    input,
+    select {
+      &:hover,
+      &:focus {
+        outline: 0;
+        margin: 0 0;
+      }
+      &:hover { border: 2px solid GetColor(7); }
+      &:focus { border: 2px solid $Green; }
+    }
+  }
+  div.formError {
+    p.errorMessage {
+      color: $DarkRed;
+      margin-bottom: 1rem;
+    }
+  }
+  div.formAction {
+    button {
+      margin-top: 1.3rem;
+      padding: 4px;
+      border-radius: 3px;
+      font-size: 85%;
+      transition: all 0.3s ease;
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 4px 4px 8px 4px rgba(100,50,100,0.4);
+      }
+      &.primaryAction {
+        color: White;
+        background: $DarkGreen;
+        border: 1px solid $DarkGreen;
+        font-weight: 600;
+      }
+      &.secondaryAction {
+        color: White;
+        background: $DarkRed;
+        border: 1px solid $DarkRed;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+// -----------------------------------------------
+// Styling ///////////////////////////////////////
+// -----------------------------------------------
+
+main.mylinks {
+  padding: 0.5rem;
+  background: $MainBackground;
+  display: flex;
+  flex-direction: column;
+  div.paneFavourites {
+    color: $Jet;
+    margin-bottom: 0.5rem;
+  }
+  div.paneProposals {
+    div.droppableRegion {
+      margin: 0 0 1rem 0;
+      padding: 1rem;
+      border: 2px dashed GetColor(8);
+      border-radius: 7px;
+      min-height: 100px;
+    }
+  }
+  div.paneSearch {
+    div.formEntry { margin-bottom: 0.5rem;}
+  }
+  div.draggableItems {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+div.name {
+  display: inline-block;
+  font-size: 90%;
+  margin: 2px;
+  padding: 2px 5px;
+  border: 1px solid DarkGrey;
+  border-radius: 2px;
+  background: White;
+}
+
+@media (min-width: 700px) {
+  main.mylinks { flex-direction: row; gap: 2rem; }
+  div.paneFavourites { flex: 2 }
+  div.paneProposals { flex: 3 }
+  div.paneSearch { flex: 3; }
+}
+
+div.card {
+  margin: auto;
+  padding: 20px;
+  overflow: hidden;
+  margin-bottom: 30px;
+
+  width: 100%;
+  max-width: 500px;
+
+  border: 0px;
+  border-radius: 3px;
+  background: $CardBackground;
+  box-shadow: 4px 4px 8px 4px rgba(100,50,00,0.3);
+  &.fullWidth {
+    max-width: 100%;
+  }
+}
